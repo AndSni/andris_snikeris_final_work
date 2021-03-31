@@ -1,6 +1,7 @@
 package lv.lu.finalwork.repository;
 
 import lv.lu.finalwork.model.Product;
+import lv.lu.finalwork.model.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ public class ProductRepository implements Repository<Product>{
         idCounter += 1;
         repository.put(idCounter, entity);
         return idCounter;
-
     }
 
     @Override
@@ -36,5 +36,15 @@ public class ProductRepository implements Repository<Product>{
     @Override
     public void delete(Long id) {
         repository.remove(id);
+    }
+
+    public List<Product> findByCategory(ProductCategory category){
+        List<Product> result = new ArrayList<Product>();
+        for (Product product : repository.values()){
+            if(product.getCategory() == category){
+                result.add(product);
+            }
+        }
+        return result;
     }
 }

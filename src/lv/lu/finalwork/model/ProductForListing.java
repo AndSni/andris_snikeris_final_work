@@ -1,9 +1,8 @@
 package lv.lu.finalwork.model;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
-public class Product {
+public class ProductForListing{
     private Long id;
     private String name;
     private BigDecimal price;
@@ -11,22 +10,16 @@ public class Product {
     private BigDecimal discount;
     private String description;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id.equals(product.id)
-                && name.equals(product.name)
-                && price.equals(product.price)
-                && category == product.category
-                && Objects.equals(discount, product.discount)
-                && Objects.equals(description, product.description);
-    }
+    BigDecimal priceWithDiscount;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, category, discount, description);
+    public ProductForListing(Long id, String name, ProductCategory category, BigDecimal price, BigDecimal discount, String description, BigDecimal priceWithDiscount) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.discount = discount;
+        this.description = description;
+        this.priceWithDiscount = priceWithDiscount;
     }
 
     public Long getId() {
@@ -77,6 +70,11 @@ public class Product {
         this.description = description;
     }
 
+    public BigDecimal getPriceWithDiscount() {
+        return priceWithDiscount;
+    }
 
-
+    public void setPriceWithDiscount(BigDecimal priceWithDiscount) {
+        this.priceWithDiscount = priceWithDiscount;
+    }
 }
