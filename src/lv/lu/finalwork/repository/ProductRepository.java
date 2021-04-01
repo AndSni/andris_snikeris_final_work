@@ -19,6 +19,7 @@ public class ProductRepository implements Repository<Product>{
     @Override
     public Long save(Product entity) {
         idCounter += 1;
+        entity.setId(idCounter);
         repository.put(idCounter, entity);
         return idCounter;
     }
@@ -46,5 +47,9 @@ public class ProductRepository implements Repository<Product>{
             }
         }
         return result;
+    }
+
+    public void setIdCounter(Long idCounter) {
+        this.idCounter = idCounter;
     }
 }
