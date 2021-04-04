@@ -6,7 +6,11 @@ public enum MenuType {
     CATEGORY_LIST,
     PRODUCT_VIEW,
     MAIN,
-    PRODUCT_ADD;
+    PRODUCT_ADD,
+    PRODUCT_EDIT,
+    PRODUCT_DELETE,
+    PRODUCT_LIST,
+    CATEGORY_DISCOUNT;
 
 
     public static MenuType returnType(int value) {
@@ -16,13 +20,14 @@ public enum MenuType {
             case 1:
                 return PRODUCT_SEARCH;
             case 2:
-                return CATEGORY_VIEW;
+                return PRODUCT_LIST;
             case 3:
                 return CATEGORY_LIST;
             case 4:
                 return PRODUCT_VIEW;
             case 5:
                 return PRODUCT_ADD;
+
 
 
             default:

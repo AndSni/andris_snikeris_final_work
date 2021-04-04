@@ -1,4 +1,4 @@
-package lv.lu.finalwork.ui;
+package lv.lu.finalwork.ui.renders;
 
 import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.model.ProductCategory;

@@ -49,6 +49,10 @@ public class ProductRepository implements Repository<Product>{
         return result;
     }
 
+    public void update(Long id, Product product){
+        repository.replace(id, product);
+    }
+
     public void setIdCounter(Long idCounter) {
         this.idCounter = idCounter;
     }

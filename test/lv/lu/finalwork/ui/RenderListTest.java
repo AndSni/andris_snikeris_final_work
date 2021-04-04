@@ -3,14 +3,13 @@ package lv.lu.finalwork.ui;
 import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.model.ProductCategory;
 import lv.lu.finalwork.repository.ProductRepository;
+import lv.lu.finalwork.ui.renders.RenderList;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class RenderListTest {
 

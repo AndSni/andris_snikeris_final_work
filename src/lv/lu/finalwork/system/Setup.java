@@ -40,6 +40,7 @@ public class Setup {
             ObjectInputStream objectStream = new ObjectInputStream(inputStream);
             productMap = (HashMap<Long, Product>) objectStream.readObject();
             objectStream.close();
+            System.out.println("File DB successfully loaded.");
             return productMap;
         } catch (Exception e) {
             System.out.println("File DB not loaded.");

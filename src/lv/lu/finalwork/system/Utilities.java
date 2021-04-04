@@ -52,45 +52,5 @@ public class Utilities {
         System.out.println("----------------------------------------");
     }
 
-    public static MenuType menuScanner() throws IOException {
-        Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
-        char letter = value.charAt(0);
-        if (Character.toUpperCase(letter) == 'Q') { Setup setup = new Setup(); setup.exit();}
-        return MenuType.returnType(Integer.parseInt(value));
-    }
-
-    public static String standardInputScanner(){
-        Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
-    }
-
-    public static ProductCategory menuScannerForCategories() throws Exception {
-        Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
-        char letter = value.charAt(0);
-        if (Character.toUpperCase(letter) == 'Q') { Setup setup = new Setup(); setup.exit();}
-        return ProductCategory.returnCategory(Integer.parseInt(value));
-    }
-
-    public static MenuType menuScannerForCategoriesList() throws Exception {
-
-        Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
-        char letter = value.charAt(0);
-        if (Character.toUpperCase(letter) == 'M') {
-            return MenuType.MAIN;
-        }
-        if (Character.toUpperCase(letter) == 'A') {
-            return MenuType.PRODUCT_ADD;
-        }
-        if (Character.toUpperCase(letter) == 'D') {
-            System.out.println("D detected");
-        }
-        if (Character.toUpperCase(letter) == 'Q') { Launcher.setup.exit();}
-        renderableProductId = Integer.parseInt(value);
-        return MenuType.returnType(Integer.parseInt(value));
-    }
-
 
 }
