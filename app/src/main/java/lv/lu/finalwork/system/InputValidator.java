@@ -3,7 +3,6 @@ package lv.lu.finalwork.system;
 import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.model.ProductCategory;
 import lv.lu.finalwork.repository.ProductRepository;
-import lv.lu.finalwork.ui.Launcher;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

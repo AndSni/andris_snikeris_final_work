@@ -22,10 +22,8 @@ public class Scanners {
         do {
             value = scan.nextLine();
             inputVerified = InputValidator.validateMenuChars(value, 'Q');
-            System.out.println("incoming " + inputVerified);
             if (!inputVerified) {
                 try {
-                    System.out.println("incoming " + value);
                     int inputNumber = Integer.parseInt(value);
                     if (inputNumber >= 1 && inputNumber <= 3) inputVerified = true;
 
@@ -57,7 +55,6 @@ public class Scanners {
                 System.out.println("Entered value is not valid. Check for correct option value.");
             }
         } while (!inputVerified);
-
 
         char letter = value.charAt(0);
         if (Character.toUpperCase(letter) == 'Q') {
