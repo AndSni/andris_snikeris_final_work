@@ -8,7 +8,6 @@ import lv.lu.finalwork.ui.MenuType;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,8 +27,6 @@ public class Utilities {
         for (int i = 0; i < screenClearingRows; i++) {
             System.out.println("");
         }
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
     }
 
     public static ProductForListing prepareProductForListing(Product product) {

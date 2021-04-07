@@ -1,9 +1,8 @@
 package lv.lu.finalwork.repository;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface Repository<T> extends Serializable {
+public interface Repository<T> {
 
     Long save(T entity);
 

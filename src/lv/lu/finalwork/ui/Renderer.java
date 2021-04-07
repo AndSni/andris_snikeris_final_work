@@ -16,41 +16,58 @@ public class Renderer {
             case CATEGORY_VIEW -> renderCategoryView(category);
             case CATEGORY_LIST -> renderCategoryList();
             case PRODUCT_SEARCH -> renderProductSearch();
-            case PRODUCT_ADD -> renderProductAddRoutine(category);
+            case PRODUCT_ADD -> renderAddProductRoutine(category);
             case PRODUCT_DELETE -> renderProductDeleteRoutine(id);
             case PRODUCT_EDIT -> renderProductEditRoutine(id);
             case PRODUCT_LIST -> renderProductList();
-            case CATEGORY_DISCOUNT -> renderCategoryDiscountingRoutine(category);
+            case CATEGORY_DISCOUNT -> renderCategoryDiscounting(category);
 
             default -> throw new Exception("Render type not available");
         }
 
     }
 
-    public void renderStartup() throws Exception {
-        render(MenuType.MAIN, 0, null);
+    private void renderCategoryDiscounting(ProductCategory category) throws Exception {
+        RenderCategoryDiscounting discounting = new RenderCategoryDiscounting();
+        discounting.updateDiscountRoutine(category);
     }
 
 
-    private void renderProductAddRoutine(ProductCategory category) throws Exception {
-        RenderAddProduct addRoutine = new RenderAddProduct();
-        addRoutine.addProductRoutine(category);
+
+
+    private void renderProductList() throws Exception {
+        RenderList renderList = new RenderList();
+        renderList.render(Launcher.setup.getProductRepository().findAll());
+        renderProductListOptions();
     }
+    private void renderProductListOptions() throws Exception {
+        System.out.println();
+        System.out.println("Enter according ID to EDIT product.");
+        System.out.println("Enter 'M' for MAIN MENU." );
+        System.out.println("Enter 'Q' to EXIT application." );
+        render(Scanners.menuScannerForCategoriesList(), renderableProductId, null);
+    }
+
+
+
 
     private void renderProductEditRoutine(int id) throws Exception {
         RenderEditProduct editProduct = new RenderEditProduct();
         editProduct.editProductRoutine(id);
     }
 
+
     private void renderProductDeleteRoutine(int id) throws Exception {
         RenderDeleteProduct deleteRoutine = new RenderDeleteProduct();
         deleteRoutine.startProductDeleteRoutine(id);
     }
 
-    private void renderCategoryDiscountingRoutine(ProductCategory category) throws Exception {
-        RenderCategoryDiscounting discounting = new RenderCategoryDiscounting();
-        discounting.updateDiscountRoutine(category);
+
+    private void renderAddProductRoutine(ProductCategory category) throws Exception {
+        RenderAddProduct addRoutine = new RenderAddProduct();
+        addRoutine.addProductRoutine(category);
     }
+
 
 
     public void renderMainMenu() throws Exception {
@@ -64,58 +81,12 @@ public class Renderer {
         renderMenuBorder();
         renderMainMenuOptions();
     }
-
     private void renderMainMenuOptions() throws Exception {
         System.out.println();
         System.out.println("Enter according number to continue:");
         render(Scanners.menuScanner(), 0, null);
     }
 
-
-    private void renderCategoryList() throws Exception {
-        clearScreen();
-        RenderCategories categories = new RenderCategories();
-        categories.render();
-        renderCategoryListOptions();
-    }
-
-    private void renderCategoryListOptions() throws Exception {
-        System.out.println();
-        System.out.println("Enter according number to continue:");
-        render(MenuType.CATEGORY_VIEW, 0, Scanners.categoryListInput());
-    }
-
-
-    public void renderCategoryView(ProductCategory category) throws Exception {
-        RenderList list = new RenderList();
-        list.render(Launcher.setup.getProductRepository().findAll(), category);
-        renderCategoryViewOptions(category);
-    }
-
-    private void renderCategoryViewOptions(ProductCategory category) throws Exception {
-        System.out.println();
-        System.out.println("Enter according ID to EDIT product.");
-        System.out.println("Enter 'A' to ADD new PRODUCT");
-        System.out.println("Enter 'D' to set DISCOUNT for all current category products.");
-        System.out.println("Enter 'M' for MAIN MENU.");
-        System.out.println("Enter 'Q' to EXIT application.");
-        render(Scanners.menuScannerForCategoriesList(category), renderableProductId, category);
-    }
-
-
-    private void renderProductList() throws Exception {
-        RenderList renderList = new RenderList();
-        renderList.render(Launcher.setup.getProductRepository().findAll());
-        renderProductListOptions();
-    }
-
-    private void renderProductListOptions() throws Exception {
-        System.out.println();
-        System.out.println("Enter according ID to EDIT product.");
-        System.out.println("Enter 'M' for MAIN MENU.");
-        System.out.println("Enter 'Q' to EXIT application.");
-        render(Scanners.productSearchInput(), renderableProductId, null);
-    }
 
 
     private void renderProductSearch() throws Exception {
@@ -124,16 +95,47 @@ public class Renderer {
         System.out.printf("Product search by ID number\n");
         renderMenuBorder();
         renderProductSearchOptions();
-        render(Scanners.productSearchInput(), renderableProductId, null);
+        render(Scanners.menuScannerForProductSearch(), renderableProductId, null);
     }
-
     private void renderProductSearchOptions() {
         System.out.println();
         System.out.println("Enter according product ID");
-        System.out.println("Enter 'M' for MAIN MENU.");
-        System.out.println("Enter 'Q' to EXIT application.");
+        System.out.println("Enter 'M' for MAIN MENU." );
+        System.out.println("Enter 'Q' to EXIT application." );
         System.out.println();
     }
+
+
+
+    private void renderCategoryList() throws Exception {
+        clearScreen();
+        RenderCategories categories = new RenderCategories();
+        categories.render();
+        renderCategoryListOptions();
+    }
+    private void renderCategoryListOptions() throws Exception {
+        System.out.println();
+        System.out.println("Enter according number to continue:");
+        render(MenuType.CATEGORY_VIEW, 0, Scanners.menuScannerForCategories());
+    }
+
+
+
+    public void renderCategoryView(ProductCategory category) throws Exception {
+        RenderList list = new RenderList();
+        list.render(Launcher.setup.getProductRepository().findAll(), category);
+        renderCategoryViewOptions(category);
+    }
+    private void renderCategoryViewOptions(ProductCategory category) throws Exception {
+        System.out.println();
+        System.out.println("Enter according ID to EDIT product.");
+        System.out.println("Enter 'A' to ADD new PRODUCT");
+        System.out.println("Enter 'D' to set DISCOUNT for all current category products.");
+        System.out.println("Enter 'M' for MAIN MENU." );
+        System.out.println("Enter 'Q' to EXIT application." );
+        render(Scanners.menuScannerForCategoriesList(), renderableProductId, category);
+    }
+
 
 
     public void renderProductView(int id) throws Exception {
@@ -141,15 +143,19 @@ public class Renderer {
         productView.render(Launcher.setup.getProductRepository().findById((long) id));
         renderProductViewOptions(id);
     }
-
     private void renderProductViewOptions(int id) throws Exception {
         System.out.println();
         System.out.println("Enter 'E' to EDIT product.");
         System.out.println("Enter 'D' to DELETE product.");
-        System.out.println("Enter 'M' for MAIN MENU.");
-        System.out.println("Enter 'Q' to EXIT application.");
+        System.out.println("Enter 'M' for MAIN MENU." );
+        System.out.println("Enter 'Q' to EXIT application." );
         render(Scanners.menuScannerForProductView(), id, null);
     }
 
 
-}
+
+    public void renderStartup() throws Exception {
+        render(MenuType.MAIN, 0, null);
+    }
+
+    }

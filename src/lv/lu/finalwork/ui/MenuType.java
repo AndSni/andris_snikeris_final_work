@@ -23,6 +23,11 @@ public enum MenuType {
                 return PRODUCT_LIST;
             case 3:
                 return CATEGORY_LIST;
+            case 4:
+                return PRODUCT_VIEW;
+            case 5:
+                return PRODUCT_ADD;
+
 
 
             default:
