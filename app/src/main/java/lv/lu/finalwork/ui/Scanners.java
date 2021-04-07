@@ -21,9 +21,19 @@ public class Scanners {
 
         do {
             value = scan.nextLine();
-            inputVerified = InputValidator.validateMenu(value,'Q');
-            if(Integer.parseInt(value) < 1 || Integer.parseInt(value) > 3) inputVerified = false;
-            if(!inputVerified){
+            inputVerified = InputValidator.validateMenuChars(value, 'Q');
+            System.out.println("incoming " + inputVerified);
+            if (!inputVerified) {
+                try {
+                    System.out.println("incoming " + value);
+                    int inputNumber = Integer.parseInt(value);
+                    if (inputNumber >= 1 && inputNumber <= 3) inputVerified = true;
+
+                } catch (Exception e) {
+                    inputVerified = false;
+                }
+            }
+            if (!inputVerified) {
                 System.out.println("Entered value is not valid. Check for correct option value.");
             }
         } while (!inputVerified);
@@ -35,15 +45,15 @@ public class Scanners {
         return MenuType.returnType(Integer.parseInt(value));
     }
 
-    public static ProductCategory menuScannerForCategories() throws Exception {
+    public static ProductCategory categoryListInput() throws Exception {
         Scanner scan = new Scanner(System.in);
         boolean inputVerified;
         String value;
 
         do {
             value = scan.nextLine();
-            inputVerified = InputValidator.validateCategoryMenuInput(value,'Q');
-            if(!inputVerified){
+            inputVerified = InputValidator.validateCategoryMenuInput(value, 'Q');
+            if (!inputVerified) {
                 System.out.println("Entered value is not valid. Check for correct option value.");
             }
         } while (!inputVerified);
@@ -64,9 +74,12 @@ public class Scanners {
 
         do {
             value = scan.nextLine();
-            inputVerified = InputValidator.validateMenu(value,'Q','M','A','D');
-            if(!InputValidator.validateProductIdWithinCategoryRange(value, Launcher.setup.getProductRepository(), _category)) inputVerified = false;
+            inputVerified = InputValidator.validateMenuChars(value, 'Q', 'M', 'A', 'D');
+
             if(!inputVerified){
+                inputVerified = InputValidator.validateProductIdWithinCategoryRange(value, Launcher.setup.getProductRepository(), _category);
+            }
+            if (!inputVerified) {
                 System.out.println("Entered value is not valid. Check for correct option value.");
             }
         } while (!inputVerified);
@@ -97,8 +110,8 @@ public class Scanners {
 
         do {
             value = scan.nextLine();
-            inputVerified = InputValidator.validateMenuOnlyChars(value,'E','M','D','Q');
-            if(!inputVerified){
+            inputVerified = InputValidator.validateMenuChars(value, 'E', 'M', 'D', 'Q');
+            if (!inputVerified) {
                 System.out.println("Entered value is not valid. Check for correct option value.");
             }
         } while (!inputVerified);
@@ -121,7 +134,7 @@ public class Scanners {
         return MenuType.PRODUCT_VIEW;
     }
 
-    public static MenuType menuScannerForProductSearch() throws Exception {
+    public static MenuType productSearchInput() throws Exception {
 
         Scanner scan = new Scanner(System.in);
         boolean inputVerified;
@@ -129,9 +142,12 @@ public class Scanners {
 
         do {
             value = scan.nextLine();
-            inputVerified = InputValidator.validateMenu(value,'Q','M');
-            if(!InputValidator.validateProductIdAllRange(value, Launcher.setup.getProductRepository())) inputVerified = false;
-            if(!inputVerified){
+            inputVerified = InputValidator.validateMenuChars(value, 'Q', 'M');
+
+            if (!inputVerified) {
+                inputVerified = InputValidator.validateProductIdAllRange(value, Launcher.setup.getProductRepository());
+            }
+            if (!inputVerified) {
                 System.out.println("Entered value is not valid. Check for correct option value.");
             }
         } while (!inputVerified);

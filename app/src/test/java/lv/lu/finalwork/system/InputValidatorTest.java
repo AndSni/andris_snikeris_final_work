@@ -13,28 +13,18 @@ import static org.junit.Assert.*;
 public class InputValidatorTest {
     @Test
     public void shouldAllowCharK() {
-        assertTrue(InputValidator.validateMenu("K", 'L', 'K'));
-    }
-
-    @Test
-    public void shouldAllowCharA() {
-        assertTrue(InputValidator.validateMenuOnlyChars("A", 'A', 'K'));
-    }
-
-    @Test
-    public void shouldDisallowCharA() {
-        assertFalse(InputValidator.validateMenuOnlyChars("A", 'P', 'K'));
+        assertTrue(InputValidator.validateMenuChars("K", 'L', 'K'));
     }
 
     @Test
     public void shouldAllowNumber() {
-        assertTrue(InputValidator.validateMenu("23", 'L', 'K'));
+        assertTrue(InputValidator.validateMenuChars("23", 'L', 'K'));
     }
 
 
     @Test
     public void shouldFailOnDisallowedChar() {
-        assertFalse(InputValidator.validateMenu("A", 'G', 'Q', 'M'));
+        assertFalse(InputValidator.validateMenuChars("A", 'G', 'Q', 'M'));
     }
 
     @Test

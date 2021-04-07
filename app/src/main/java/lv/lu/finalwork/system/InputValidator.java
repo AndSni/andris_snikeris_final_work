@@ -14,20 +14,15 @@ public class InputValidator {
     private static final Pattern decimalPattern = Pattern.compile("^[0-9]*\\.[0-9]+$", Pattern.CASE_INSENSITIVE);
     private static final Pattern wordPattern = Pattern.compile("([A-Za-z])", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateMenu(String _userInput, char... _allowedChars) {
-        for (char character : _allowedChars) {
-            if (Character.toUpperCase(_userInput.charAt(0)) == character) return true;
-        }
-        Matcher matcher = numberPattern.matcher(_userInput);
-        return matcher.find();
-    }
+    public static boolean validateMenuChars(String _userInput, char... _allowedChars) {
 
-    public static boolean validateMenuOnlyChars(String _userInput, char... _allowedChars) {
+        if(_userInput.isEmpty()) return false;
         for (char character : _allowedChars) {
             if (Character.toUpperCase(_userInput.charAt(0)) == character) return true;
         }
         return false;
     }
+
 
     public static boolean validateTextInput(String _userInput) {
         Matcher decimalMatcher = decimalPattern.matcher(_userInput);
@@ -67,7 +62,7 @@ public class InputValidator {
             for (Product product : _repo.findAll()) {
                 if (product.getId() == inputNumber && product.getCategory() == _category) return true;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return false;

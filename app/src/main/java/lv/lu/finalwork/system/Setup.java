@@ -24,7 +24,7 @@ public class Setup {
         saveDbToFile();
         System.out.println();
         System.out.println("DB saved. Closing application.");
-        System.exit(1);
+        System.exit(0);
     }
 
 
