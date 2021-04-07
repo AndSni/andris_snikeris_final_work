@@ -1,6 +1,7 @@
 package lv.lu.finalwork.ui;
 
 import lv.lu.finalwork.model.ProductCategory;
+import lv.lu.finalwork.system.InputValidator;
 import lv.lu.finalwork.system.Utilities;
 
 import java.io.IOException;
@@ -15,7 +16,18 @@ public class Scanners {
 
     public static MenuType menuScanner() throws IOException {
         Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
+        boolean inputVerified;
+        String value;
+
+        do {
+            value = scan.nextLine();
+            inputVerified = InputValidator.validateMenu(value,'Q');
+            if(Integer.parseInt(value) < 1 || Integer.parseInt(value) > 3) inputVerified = false;
+            if(!inputVerified){
+                System.out.println("Entered value is not valid. Check for correct option value.");
+            }
+        } while (!inputVerified);
+
         char letter = value.charAt(0);
         if (Character.toUpperCase(letter) == 'Q') {
             Launcher.setup.exit();
@@ -25,7 +37,18 @@ public class Scanners {
 
     public static ProductCategory menuScannerForCategories() throws Exception {
         Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
+        boolean inputVerified;
+        String value;
+
+        do {
+            value = scan.nextLine();
+            inputVerified = InputValidator.validateCategoryMenuInput(value,'Q');
+            if(!inputVerified){
+                System.out.println("Entered value is not valid. Check for correct option value.");
+            }
+        } while (!inputVerified);
+
+
         char letter = value.charAt(0);
         if (Character.toUpperCase(letter) == 'Q') {
             Launcher.setup.exit();
@@ -33,10 +56,21 @@ public class Scanners {
         return ProductCategory.returnCategory(Integer.parseInt(value));
     }
 
-    public static MenuType menuScannerForCategoriesList() throws Exception {
+    public static MenuType menuScannerForCategoriesList(ProductCategory _category) throws Exception {
 
         Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
+        boolean inputVerified;
+        String value;
+
+        do {
+            value = scan.nextLine();
+            inputVerified = InputValidator.validateMenu(value,'Q','M','A','D');
+            if(!InputValidator.validateProductIdWithinCategoryRange(value, Launcher.setup.getProductRepository(), _category)) inputVerified = false;
+            if(!inputVerified){
+                System.out.println("Entered value is not valid. Check for correct option value.");
+            }
+        } while (!inputVerified);
+
         char letter = value.charAt(0);
         if (Character.toUpperCase(letter) == 'M') {
             return MenuType.MAIN;
@@ -58,7 +92,17 @@ public class Scanners {
     public static MenuType menuScannerForProductView() throws Exception {
 
         Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
+        boolean inputVerified;
+        String value;
+
+        do {
+            value = scan.nextLine();
+            inputVerified = InputValidator.validateMenuOnlyChars(value,'E','M','D','Q');
+            if(!inputVerified){
+                System.out.println("Entered value is not valid. Check for correct option value.");
+            }
+        } while (!inputVerified);
+
         char letter = value.charAt(0);
         if (Character.toUpperCase(letter) == 'M') {
             return MenuType.MAIN;
@@ -80,7 +124,19 @@ public class Scanners {
     public static MenuType menuScannerForProductSearch() throws Exception {
 
         Scanner scan = new Scanner(System.in);
-        String value = scan.nextLine();
+        boolean inputVerified;
+        String value;
+
+        do {
+            value = scan.nextLine();
+            inputVerified = InputValidator.validateMenu(value,'Q','M');
+            if(!InputValidator.validateProductIdAllRange(value, Launcher.setup.getProductRepository())) inputVerified = false;
+            if(!inputVerified){
+                System.out.println("Entered value is not valid. Check for correct option value.");
+            }
+        } while (!inputVerified);
+
+
         char letter = value.charAt(0);
         if (Character.toUpperCase(letter) == 'M') {
             return MenuType.MAIN;

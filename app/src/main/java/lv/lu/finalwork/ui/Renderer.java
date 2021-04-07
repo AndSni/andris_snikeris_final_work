@@ -45,7 +45,7 @@ public class Renderer {
         System.out.println("Enter according ID to EDIT product.");
         System.out.println("Enter 'M' for MAIN MENU." );
         System.out.println("Enter 'Q' to EXIT application." );
-        render(Scanners.menuScannerForCategoriesList(), renderableProductId, null);
+        render(Scanners.menuScannerForProductSearch(), renderableProductId, null);
     }
 
 
@@ -133,7 +133,7 @@ public class Renderer {
         System.out.println("Enter 'D' to set DISCOUNT for all current category products.");
         System.out.println("Enter 'M' for MAIN MENU." );
         System.out.println("Enter 'Q' to EXIT application." );
-        render(Scanners.menuScannerForCategoriesList(), renderableProductId, category);
+        render(Scanners.menuScannerForCategoriesList(category), renderableProductId, category);
     }
 
 
