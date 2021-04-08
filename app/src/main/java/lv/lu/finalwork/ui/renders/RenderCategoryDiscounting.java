@@ -21,10 +21,10 @@ public class RenderCategoryDiscounting {
         renderMenuBorder();
         System.out.println("Enter amount of discount in %");
         renderMenuBorder();
-        BigDecimal tempDiscount = new BigDecimal(Scanners.standardInputScanner());
+        BigDecimal tempDiscount = new BigDecimal(Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_DISCOUNT));
         Renderer renderer = new Renderer();
         System.out.println("Is entered information correct? Y / N");
-        char option = Scanners.standardInputScanner().charAt(0);
+        char option = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.YES_NO).charAt(0);
         System.out.println(option);
         switch (Character.toUpperCase(option)) {
             case 'Y':

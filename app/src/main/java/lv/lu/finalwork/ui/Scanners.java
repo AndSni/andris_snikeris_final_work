@@ -8,11 +8,62 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Scanners {
+    public enum PRODUCT_INPUT_TYPE {ADD_NAME, ADD_PRICE, ADD_DISCOUNT, ADD_DESCRIPTION, YES_NO}
 
-    public static String standardInputScanner() {
+    public static String productInputScanner(PRODUCT_INPUT_TYPE _type) {
         Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
+        boolean inputVerified;
+        String value;
+
+        switch (_type) {
+            case ADD_NAME, ADD_DESCRIPTION: {
+                do {
+                    value = scan.nextLine();
+                    inputVerified = InputValidator.validateTextInput(value);
+                    if (!inputVerified) {
+                        System.out.println("Entered text is not valid. Only letters and numbers is allowed.");
+                    }
+                } while (!inputVerified);
+            }
+            break;
+            case ADD_PRICE: {
+                do {
+                    value = scan.nextLine();
+                    inputVerified = InputValidator.validateDoubleInput(value);
+                    if (!inputVerified) {
+                        System.out.println("Entered price is not valid. Must be a decimal.");
+                    }
+                } while (!inputVerified);
+            }
+            break;
+            case ADD_DISCOUNT: {
+                do {
+                    value = scan.nextLine();
+                    inputVerified = InputValidator.validatePercentageInput(value);
+                    if (!inputVerified) {
+                        System.out.println("Entered discount is not valid. Must be number in range 0-99.");
+                    }
+                } while (!inputVerified);
+            }
+            break;
+            case YES_NO: {
+                do {
+                    value = scan.nextLine();
+                    inputVerified = InputValidator.validateYesNoInput(value);
+                    if (!inputVerified) {
+                        System.out.println("Entered value is not valid. Enter Y for yes, N for no.");
+                    }
+                } while (!inputVerified);
+            }
+            break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + _type);
+        }
+
+        return value;
     }
+
 
     public static MenuType menuScanner() throws IOException {
         Scanner scan = new Scanner(System.in);
@@ -73,7 +124,7 @@ public class Scanners {
             value = scan.nextLine();
             inputVerified = InputValidator.validateMenuChars(value, 'Q', 'M', 'A', 'D');
 
-            if(!inputVerified){
+            if (!inputVerified) {
                 inputVerified = InputValidator.validateProductIdWithinCategoryRange(value, Launcher.setup.getProductRepository(), _category);
             }
             if (!inputVerified) {

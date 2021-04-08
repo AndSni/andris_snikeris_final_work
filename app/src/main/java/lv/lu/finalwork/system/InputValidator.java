@@ -67,4 +67,29 @@ public class InputValidator {
         return false;
     }
 
+    public static boolean validateDoubleInput(String value) {
+        try{
+            Double.parseDouble(value);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    public static boolean validatePercentageInput(String value) {
+        try{
+            int result = Integer.parseInt(value);
+            if(result >= 0 && result <= 99) return true;
+
+        } catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validateYesNoInput(String value) {
+        char letter = value.charAt(0);
+        if (Character.toUpperCase(letter) == 'Y' || Character.toUpperCase(letter) == 'N') return true;
+        return true;
+    }
 }

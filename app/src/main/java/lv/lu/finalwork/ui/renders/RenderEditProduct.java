@@ -19,7 +19,7 @@ public class RenderEditProduct {
         renderMenuBorder();
 
         System.out.printf("Current name: %-10s | Enter new NAME", getName(id));
-        input = Scanners.standardInputScanner();
+        input = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_NAME);
         if (!input.isEmpty()) {
             tempProduct.setName(input);
         } else {
@@ -27,7 +27,7 @@ public class RenderEditProduct {
         }
 
         System.out.printf("Current price: %-10s$ | Enter new PRICE", getPrice(id));
-        input = Scanners.standardInputScanner();
+        input = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_PRICE);
         if (!input.isEmpty()) {
             System.out.println("Debug:" + input);
             tempProduct.setPrice(new BigDecimal(input));
@@ -36,7 +36,7 @@ public class RenderEditProduct {
         }
 
         System.out.printf("Current Discount: %-10s$ | Enter new DISCOUNT", getDiscount(id));
-        input = Scanners.standardInputScanner();
+        input = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_DISCOUNT);
         if (!input.isEmpty()) {
             tempProduct.setDiscount(new BigDecimal(input));
         } else {
@@ -44,7 +44,7 @@ public class RenderEditProduct {
         }
 
         System.out.printf("Current description: %-10s \n Enter new DESCRIPTION", getDescription(id));
-        input = Scanners.standardInputScanner();
+        input = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_DESCRIPTION);
         if (!input.isEmpty()) {
             tempProduct.setDescription(input);
         } else {
@@ -56,7 +56,7 @@ public class RenderEditProduct {
         renderMenuBorder();
         Renderer renderer = new Renderer();
         System.out.println("Is entered information correct? Y / N");
-        char option = Scanners.standardInputScanner().charAt(0);
+        char option = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.YES_NO).charAt(0);
         System.out.println(option);
         switch (Character.toUpperCase(option)) {
             case 'Y':

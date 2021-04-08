@@ -8,7 +8,7 @@ import lv.lu.finalwork.ui.Scanners;
 
 import java.math.BigDecimal;
 
-import static lv.lu.finalwork.system.Utilities.*;
+import static lv.lu.finalwork.system.Utilities.renderMenuBorder;
 
 public class RenderAddProduct {
 
@@ -18,18 +18,18 @@ public class RenderAddProduct {
         System.out.println("Adding new product");
         renderMenuBorder();
         System.out.println("Enter product NAME");
-        tempProduct.setName(Scanners.standardInputScanner());
+        tempProduct.setName(Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_NAME));
         tempProduct.setCategory(category);
         System.out.println("Enter PRICE");
-        tempProduct.setPrice(new BigDecimal(Scanners.standardInputScanner()));
+        tempProduct.setPrice(new BigDecimal(Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_PRICE)));
         System.out.println("Enter DISCOUNT");
-        tempProduct.setDiscount(new BigDecimal(Scanners.standardInputScanner()));
+        tempProduct.setDiscount(new BigDecimal(Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_DISCOUNT)));
         System.out.println("Enter DESCRIPTION");
-        tempProduct.setDescription(Scanners.standardInputScanner());
+        tempProduct.setDescription(Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.ADD_DESCRIPTION));
         renderMenuBorder();
         Renderer renderer = new Renderer();
         System.out.println("Is entered information correct? Y / N");
-        char option = Scanners.standardInputScanner().charAt(0);
+        char option = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.YES_NO).charAt(0);
         System.out.println(option);
         switch (Character.toUpperCase(option)) {
             case 'Y':

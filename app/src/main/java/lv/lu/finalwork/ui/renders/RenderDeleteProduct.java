@@ -14,7 +14,7 @@ public class RenderDeleteProduct {
         System.out.println("You are about to delete product with ID " + id);
         System.out.println("Are you sure? Y / N");
         Renderer renderer = new Renderer();
-        char option = Scanners.standardInputScanner().charAt(0);
+        char option = Scanners.productInputScanner(Scanners.PRODUCT_INPUT_TYPE.YES_NO).charAt(0);
         System.out.println(option);
         switch (Character.toUpperCase(option)) {
             case 'Y':
