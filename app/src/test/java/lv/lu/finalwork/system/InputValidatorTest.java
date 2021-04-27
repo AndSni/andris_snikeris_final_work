@@ -1,4 +1,4 @@
-package lv.lu.finalwork.system;
+/*package lv.lu.finalwork.system;
 
 import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.model.ProductCategory;
@@ -120,3 +120,5 @@ public class InputValidatorTest {
         assertFalse(InputValidator.validateProductIdWithinCategoryRange("1", victim, ProductCategory.FISH));
     }
 }
+
+ */

@@ -1,11 +1,10 @@
 package lv.lu.finalwork.system;
 
-import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.repository.ProductRepository;
-import lv.lu.finalwork.ui.Launcher;
 
-import java.io.*;;
-import java.util.HashMap;
+import java.io.*;
+
+;
 
 public class Setup {
 
@@ -39,7 +38,8 @@ public class Setup {
         } catch (Exception e) {
             System.out.println("File DB not loaded.");
         }
-        return new ProductRepository(new HashMap<>());
+       //return new ProductRepository(new HashMap<>());
+       return new ProductRepository();
     }
 
     private void saveDbToFile() throws IOException {

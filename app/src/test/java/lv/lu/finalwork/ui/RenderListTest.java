@@ -4,24 +4,24 @@ import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.model.ProductCategory;
 import lv.lu.finalwork.repository.ProductRepository;
 import lv.lu.finalwork.ui.renders.RenderList;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 
+@RunWith(MockitoJUnitRunner.class)
 public class RenderListTest {
 
-    private Map<Long, Product> repoMock;
+
+    @InjectMocks
     private ProductRepository victim;
+    @Mock
+    private Map<Long, Product> repoMock;
 
-    @Before
-    public void setUp() throws Exception {
-        repoMock = new HashMap<>();
-        victim = new ProductRepository(repoMock);
-
-    }
 
     @Test
     public void RenderListShouldPrintList(){

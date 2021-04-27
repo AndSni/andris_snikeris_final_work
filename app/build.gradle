@@ -17,6 +17,17 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.6'
+
+
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13'
 

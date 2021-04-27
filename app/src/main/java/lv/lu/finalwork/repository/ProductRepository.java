@@ -4,17 +4,17 @@ import lv.lu.finalwork.model.Product;
 import lv.lu.finalwork.model.ProductCategory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProductRepository implements Repository<Product>{
+@org.springframework.stereotype.Repository
+public class ProductRepository implements Repository<Product> {
 
     private Long idCounter = 0L;
-    private final Map<Long, Product> repository;
 
-    public ProductRepository(Map<Long, Product> repository) {
-        this.repository = repository;
-    }
+    public  Map<Long, Product> repository = new HashMap<>();
+
 
     @Override
     public Long save(Product entity) {
@@ -39,17 +39,17 @@ public class ProductRepository implements Repository<Product>{
         repository.remove(id);
     }
 
-    public List<Product> findByCategory(ProductCategory category){
+    public List<Product> findByCategory(ProductCategory category) {
         List<Product> result = new ArrayList<Product>();
-        for (Product product : repository.values()){
-            if(product.getCategory() == category){
+        for (Product product : repository.values()) {
+            if (product.getCategory() == category) {
                 result.add(product);
             }
         }
         return result;
     }
 
-    public void update(Long id, Product product){
+    public void update(Long id, Product product) {
         repository.replace(id, product);
     }
 
