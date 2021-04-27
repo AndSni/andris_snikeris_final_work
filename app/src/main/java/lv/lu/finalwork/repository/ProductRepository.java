@@ -1,7 +1,7 @@
 package lv.lu.finalwork.repository;
 
-import lv.lu.finalwork.model.Product;
-import lv.lu.finalwork.model.ProductCategory;
+import lv.lu.finalwork.domain.Product;
+import lv.lu.finalwork.domain.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @org.springframework.stereotype.Repository
-public class ProductRepository implements Repository<Product> {
+class ProductRepository implements Repository<Product> {
 
     private Long idCounter = 0L;
 

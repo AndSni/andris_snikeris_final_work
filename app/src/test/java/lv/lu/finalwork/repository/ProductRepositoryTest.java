@@ -1,6 +1,6 @@
 package lv.lu.finalwork.repository;
 
-import lv.lu.finalwork.model.Product;
+import lv.lu.finalwork.domain.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
