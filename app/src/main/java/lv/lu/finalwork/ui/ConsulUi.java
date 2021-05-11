@@ -47,7 +47,7 @@ public class ConsulUi {
             }
 
             if (userChoice == 0) {
-                break;
+                System.exit(0);
             }
         }
     }
